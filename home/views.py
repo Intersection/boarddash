@@ -16,7 +16,7 @@ def index(request):
 
 def board_detail(request, **kwargs):
     community_board = CommunityBoard.objects.get(slug=kwargs['board_slug'])
-    category_dict = NYC311Record.objects.values('complaint_type').annotate(total=Count('complaint_type')).order_by('-total')
+    category_dict = NYC311Record.objects.filter(community_board_relation=community_board).values('complaint_type').annotate(total=Count('complaint_type')).order_by('-total')
     data = {
             'community_board': community_board,
             'categories': list(category_dict)[:5],

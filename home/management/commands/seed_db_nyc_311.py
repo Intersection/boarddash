@@ -11,7 +11,10 @@ PAGE_SIZE = 30
 
 def generate_slug(board_input_string):
     borough = board_input_string.split(' ')[1].lower()
-    number = int(board_input_string.split(' ')[0])
+    try:
+        number = int(board_input_string.split(' ')[0])
+    except:
+        return None
     return '{}_{}'.format(borough, number)
 
 def create_record(record):
@@ -32,12 +35,13 @@ def make_one_call(limit, offset):
     url_args = {
         'dataset_identifier': 'fhrw-4uyv',
         'format': 'json',
-        'community_board': '01 BROOKLYN',
+        #'community_board': '01 BROOKLYN',
         'limit': limit,
         'offset': offset,
         'start_date': '2018-09-23T00:00:00.0000',
     }
-    url = "https://data.cityofnewyork.us/resource/{dataset_identifier}.{format}?community_board={community_board}&$limit={limit}&$offset={offset}&$order=:id&$where=created_date > '{start_date}'".format(**url_args)
+    #url = "https://data.cityofnewyork.us/resource/{dataset_identifier}.{format}?community_board={community_board}&$limit={limit}&$offset={offset}&$order=:id&$where=created_date > '{start_date}'".format(**url_args)
+    url = "https://data.cityofnewyork.us/resource/{dataset_identifier}.{format}?$limit={limit}&$offset={offset}&$order=:id&$where=created_date > '{start_date}'".format(**url_args)
     return requests.get(url, timeout=settings.REQUESTS_TIMEOUT_SECONDS)
 
 def process_one_call(response_data):
