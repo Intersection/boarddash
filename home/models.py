@@ -15,6 +15,9 @@ class CommunityBoard(models.Model):
     cabinet_meeting = models.TextField(null=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.slug
+
 class NYC311Record(models.Model):
     BOROUGHS = (
         ('MANHATTAN', 'Manhattan'),
