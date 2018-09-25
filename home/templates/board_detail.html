@@ -5,6 +5,8 @@
 {% bootstrap_messages %}
 
 <div class="container">
+  <a class="btn btn-light" href="/" role="button">Back</a>
+  
   <h1>{{community_board.name}}</h1>
 
   <dl class="row">
@@ -39,10 +41,6 @@
     <dd class="col-sm-10">{{ community_board.cabinet_meeting }}</dt>
 
   </dl>
-  
-  <div class="embed-responsive embed-responsive-21by9">
-    <iframe width="600" height="450" src="https://www.google.com/maps/embed/v1/place?q={{community_board.address}}&key=AIzaSyCOCq-faYFF-pvYaly4jwdiDJ6vXKLCta8" allowfullscreen></iframe>
-  </div>
 
   <h3>Top 311 Report Categories</h3>
 
@@ -53,21 +51,45 @@
     {% endfor %}
   </dl>
 
-  <h3>Capital Budget Requests</h3>
+  {% if budet_requests_capital|length > 0 %}
+    <h3>Capital Budget Requests</h3>
+    
+    <div class="card-columns">
+      {% for request in budget_requests_capital %}
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ request.request }}</h5>
+            <p class="card-text">{{ request.explanation }}</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">{{ request.response }}</small>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
 
-  <dl class="row">
-    {% for request in budget_requests_capital %}
-      <dt class="col-sm-3">{{ request.request }}</dt>
-    {% endfor %}
-  </dl>
+  {% if budget_requests_operational|length > 0 %}
+    <h3>Operational Budget Requests</h3>
 
-  <h3>Operational Budget Requests</h3>
+    <div class="card-columns">
+      {% for request in budget_requests_operational %}
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ request.request }}</h5>
+            <p class="card-text">{{ request.explanation }}</p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">{{ request.response }}</small>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+  
+  <div class="embed-responsive embed-responsive-21by9">
+    <iframe width="600" height="450" src="https://www.google.com/maps/embed/v1/place?q={{community_board.address}}&key=AIzaSyCOCq-faYFF-pvYaly4jwdiDJ6vXKLCta8" allowfullscreen></iframe>
+  </div>
 
-  <dl class="row">
-    {% for request in budget_requests_operational %}
-      <dt class="col-sm-3">{{ request.request }}</dt>
-    {% endfor %}
-  </dl>
-
-  <a class="btn btn-primary" href="/" role="button">Back</a>
+  <a class="btn btn-light" href="/" role="button">Back</a>
 </div>
