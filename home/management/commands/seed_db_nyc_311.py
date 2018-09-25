@@ -4,25 +4,38 @@ from django.core.management.base import BaseCommand, CommandError
 from django.db import connection
 from django.conf import settings
 
-from home.models import NYC311Record
+from home.models import NYC311Record, CommunityBoard
 
 
 PAGE_SIZE = 30
 
+def generate_slug(board_input_string):
+    borough = board_input_string.split(' ')[1].lower()
+    number = int(board_input_string.split(' ')[0])
+    return '{}_{}'.format(borough, number)
+
 def create_record(record):
     model_record = NYC311Record()
+    slug = generate_slug(record['community_board'])
+    try:
+        board = CommunityBoard.objects.get(slug=slug)
+    except:
+        board = None
+
     for key, value in record.items():
         setattr(model_record, key, value)
+
+    model_record.community_board_relation = board
     model_record.save()
 
 def make_one_call(limit, offset):
     url_args = {
         'dataset_identifier': 'fhrw-4uyv',
         'format': 'json',
-        'community_board': '01 MANHATTAN',
+        'community_board': '01 BROOKLYN',
         'limit': limit,
         'offset': offset,
-        'start_date': '2018-09-21T00:00:00.0000',
+        'start_date': '2018-09-23T00:00:00.0000',
     }
     url = "https://data.cityofnewyork.us/resource/{dataset_identifier}.{format}?community_board={community_board}&$limit={limit}&$offset={offset}&$order=:id&$where=created_date > '{start_date}'".format(**url_args)
     return requests.get(url, timeout=settings.REQUESTS_TIMEOUT_SECONDS)

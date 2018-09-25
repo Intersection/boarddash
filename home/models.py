@@ -1,6 +1,20 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 
+
+class CommunityBoard(models.Model):
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True, max_length=255)
+    chair = models.TextField(null=True)
+    district_manager = models.TextField(null=True)
+    address = models.TextField(null=True)
+    phone_number = models.TextField(null=True)
+    email_address = models.TextField(null=True)
+    website = models.TextField(null=True)
+    board_meeting = models.TextField(null=True)
+    cabinet_meeting = models.TextField(null=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+
 class NYC311Record(models.Model):
     BOROUGHS = (
         ('MANHATTAN', 'Manhattan'),
@@ -16,6 +30,7 @@ class NYC311Record(models.Model):
     borough = models.CharField(max_length=255, choices=BOROUGHS)
     city = models.CharField(max_length=255)
     community_board = models.CharField(max_length=255)
+    community_board_relation = models.ForeignKey(CommunityBoard, null=True, on_delete=models.SET_NULL)
     complaint_type = models.CharField(max_length=255)
     created_date = models.DateTimeField()
     cross_street_1 = models.CharField(max_length=255)
@@ -35,16 +50,3 @@ class NYC311Record(models.Model):
 
     def __str__(self):
         return '%s: %s' % (self.unique_key, self.descriptor)
-
-class CommunityBoard(models.Model):
-    name = models.CharField(max_length=255)
-    slug = models.SlugField(unique=True, max_length=255)
-    chair = models.TextField(null=True)
-    district_manager = models.TextField(null=True)
-    address = models.TextField(null=True)
-    phone_number = models.TextField(null=True)
-    email_address = models.TextField(null=True)
-    website = models.TextField(null=True)
-    board_meeting = models.TextField(null=True)
-    cabinet_meeting = models.TextField(null=True)
-    created_on = models.DateTimeField(auto_now_add=True)
