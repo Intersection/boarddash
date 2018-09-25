@@ -1,4 +1,4 @@
-﻿name,slug,chair,district_manager,address,phone_number,email_address,board_meeting,cabinet_meeting,website
+name,slug,chair,district_manager,address,phone_number,email_address,board_meeting,cabinet_meeting,website
 Brooklyn Community Board 1,brooklyn_1,Dealice Fuller,Gerald A. Esposito,"Brooklyn Community Board 1 435 Graham Avenue, Brooklyn, NY 11211",7183890009,bk01@cb.nyc.gov,"Second Tuesday, 6:30pm","Third Thursday, 10:30am",http://www.nyc.gov/brooklyncb1
 Brooklyn Community Board 2,brooklyn_2,Shirley A. McRae,Robert Perris,"Brooklyn Community Board 2 350 Jay Street, 8th Floor Brooklyn, NY 11201",7185965410,cb2k@nyc.rr.com,"Second Wednesday, 6:00pm",Per agenda,http://www.nyc.gov/html/bkncb2/html/home/home.shtml
 Brooklyn Community Board 3,brooklyn_3,Richard Flateau,Henry Butler,"Brooklyn Community Board 3 1360 Fulton Street, Brooklyn, NY 11216",7186226601,bk03@cb.nyc.gov,"First Monday, 7:00pm","Fourth Thursday, 9:30am",http://www1.nyc.gov/site/brooklyncb3/index.page
@@ -58,3 +58,4 @@ Queens Community Board 14,queens_14,Dolores Orr,Jonathan L. Gaska,"Queens Commun
 Staten Island Community Board 1,staten_island_1,Nicholas Siclari,Joseph Carroll,"Staten Island Community Board 1 1 Edgewater Plaza, Room 217 Staten Island, NY 10305",7189816900,sicb1@si.rr.com,"Second Tuesday, 8:00pm",Per agenda,http://www.nyc.gov/sicb1
 Staten Island Community Board 2,staten_island_2,Dana T. Magee,Debra Derrico,"Staten Island Community Board 2 Sea View Hospital Lou Caravone Community Service Building, 460 Brielle Avenue, Staten Island, NY 10314",7183173235,dderrico@cb.nyc.gov,"Third Tuesday, 7:30pm",Per agenda,
 Staten Island Community Board 3,staten_island_3,Frank Morano,Charlene Wagner,"Staten Island Community Board 3 1243 Woodrow Road, 2nd Floor Staten Island, N. Y. 10309",7183567900,sicb3@cb.nyc.gov,"Fourth Tuesday, 7:30pm",TBD,http://www.nyc.gov/sicb3 
+
