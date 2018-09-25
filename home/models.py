@@ -15,6 +15,12 @@ class CommunityBoard(models.Model):
     cabinet_meeting = models.TextField(null=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
+    def formatted_phone_number(self):
+        first = self.phone_number[0:3]
+        second = self.phone_number[3:6]
+        third = self.phone_number[6:10]
+        return '(' + first + ')' + ' ' + second + '-' + third
+
     def __str__(self):
         return self.slug
 

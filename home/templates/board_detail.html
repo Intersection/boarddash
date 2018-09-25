@@ -1,7 +1,57 @@
-{{ community_board.chair }}
-{% for category in categories %}
-<p>
-{{ category.complaint_type }}
-{{ category.total }}
-</p>
-{% endfor %}
+{% load bootstrap4 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% bootstrap_messages %}
+
+<div class="container">
+  <h1>{{community_board.name}}</h1>
+
+  <dl class="row">
+    <dt class="col-sm-2">Chair</dt>
+    <dd class="col-sm-10">{{ community_board.chair }}</dt>
+
+    <dt class="col-sm-2">District Manager</dt>
+    <dd class="col-sm-10">{{ community_board.district_manager }}</dt>
+
+    <dt class="col-sm-2">Address</dt>
+    <dd class="col-sm-10">
+      {{ community_board.address }}
+      <a href="https://www.google.com/maps/search/?api=1&query={{community_board.address}}" rel="noopener noreferrer" target="_blank">
+        (map)
+      </a>
+    </dt>
+
+    <dt class="col-sm-2">Phone</dt>
+    <dd class="col-sm-10">
+      <a href="tel:+{{community_board.phone_number}}">{{ community_board.formatted_phone_number }}</a>
+    </dt>
+
+    <dt class="col-sm-2">Email Address</dt>
+    <dd class="col-sm-10">
+      <a href="mailto:{{ community_board.email_address }}">{{ community_board.email_address }}</a>
+    </dt>
+
+    <dt class="col-sm-2">Board Meeting</dt>
+    <dd class="col-sm-10">{{ community_board.board_meeting }}</dt>
+
+    <dt class="col-sm-2">Cabinet Meeting</dt>
+    <dd class="col-sm-10">{{ community_board.cabinet_meeting }}</dt>
+
+  </dl>
+  
+  <div class="embed-responsive embed-responsive-21by9">
+    <iframe width="600" height="450" src="https://www.google.com/maps/embed/v1/place?q={{community_board.address}}&key=AIzaSyCOCq-faYFF-pvYaly4jwdiDJ6vXKLCta8" allowfullscreen></iframe>
+  </div>
+
+  <h3>Top 311 Report Categories</h3>
+
+  <dl class="row">
+    {% for category in categories %}
+      <dt class="col-sm-3">{{ category.complaint_type }}</dt>
+      <dd class="col-sm-9">{{ category.total }}</dd>
+    {% endfor %}
+  </dl>
+
+  <a class="btn btn-primary" href="/" role="button">Back</a>
+</div>
