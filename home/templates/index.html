@@ -1,6 +1,47 @@
-<h1>Board Dash</h1>
+{% load bootstrap4 %}
 
-<h2>Select your community Board:</h2>
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% bootstrap_messages %}
 
-<select>
-</select>
+<div class="container">
+  <h1>Board Dash</h1>
+
+  <div class="btn-group dropdown">
+    <a class="btn btn-secondary btn-lg dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Select your community Board:
+    </a>
+
+    <div class="dropdown-menu pre-scrollable" aria-labelledby="dropdownMenuLink">
+      <h6 class="dropdown-header">Brooklyn</h6>
+      {% for i in brooklyn_boards %}
+      <a class="dropdown-item" href="/boards/brooklyn_{{i}}">Community Board {{i}}</a>
+      {% endfor %}
+
+      <h6 class="dropdown-header">Bronx</h6>
+      {% for i in bronx_boards %}
+      <a class="dropdown-item" href="/boards/bronx_{{i}}">Community Board {{i}}</a>
+      {% endfor %}
+
+      <h6 class="dropdown-header">Manhattan</h6>
+      {% for i in manhattan_boards %}
+      <a class="dropdown-item" href="/boards/manhattan_{{i}}">Community Board {{i}}</a>
+      {% endfor %}
+
+      <h6 class="dropdown-header">Queens</h6>
+      {% for i in queens_boards %}
+      <a class="dropdown-item" href="/boards/queens_{{i}}">Community Board {{i}}</a>
+      {% endfor %}
+
+      <h6 class="dropdown-header">Staten Island</h6>
+      {% for i in staten_island_boards %}
+      <a class="dropdown-item" href="/boards/staten_island_{{i}}">Community Board {{i}}</a>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="pt-3">
+    Unsure of your community board?
+    <a href="https://communityprofiles.planning.nyc.gov">Look it up here</a>
+  </div>
+</div>
