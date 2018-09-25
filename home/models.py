@@ -59,3 +59,18 @@ class NYC311Record(models.Model):
 
     def __str__(self):
         return '%s: %s' % (self.unique_key, self.descriptor)
+
+class BudgetRequest(models.Model):
+    board = models.CharField(max_length=255)
+    boro = models.CharField(max_length=255)
+    community_board_relation = models.ForeignKey(CommunityBoard, null=True, on_delete=models.SET_NULL)
+    explanation = models.TextField()
+    priority = models.CharField(max_length=255)
+    request = models.CharField(max_length=255)
+    responded_by = models.CharField(max_length=255)
+    response = models.TextField()
+    responsible_agency = models.CharField(max_length=255)
+    tracking_code = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.request
