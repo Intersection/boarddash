@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import NYC311Record
+
+admin.site.register(NYC311Record)

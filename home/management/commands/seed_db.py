@@ -4,6 +4,8 @@ from django.core.management.base import BaseCommand, CommandError
 from django.db import connection
 from django.conf import settings
 
+from home.models import NYC311Record
+
 
 class Command(BaseCommand):
     help = 'Hits the 311 dataset and seeds the database'
@@ -24,6 +26,11 @@ class Command(BaseCommand):
                 print('RECORD')
                 print(record)
                 # Create 311Record object here
+                #NYC311Record.objects.create(**record)
+                model_record = NYC311Record()
+                for key, value in record.items():
+                    setattr(model_record, key, value)
+                model_record.save()
             self.stdout.write(self.style.SUCCESS('Successfully executed statements'))
         except Exception as e:
             self.stderr.write(e)
