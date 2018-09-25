@@ -1,4 +1,5 @@
 from django.db import models
+from django.template.defaultfilters import slugify
 
 class NYC311Record(models.Model):
     BOROUGHS = (
@@ -34,3 +35,16 @@ class NYC311Record(models.Model):
 
     def __str__(self):
         return '%s: %s' % (self.unique_key, self.descriptor)
+
+class CommunityBoard(models.Model):
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True, max_length=255)
+    chair = models.TextField(null=True)
+    district_manager = models.TextField(null=True)
+    address = models.TextField(null=True)
+    phone_number = models.TextField(null=True)
+    email_address = models.TextField(null=True)
+    website = models.TextField(null=True)
+    board_meeting = models.TextField(null=True)
+    cabinet_meeting = models.TextField(null=True)
+    created_on = models.DateTimeField(auto_now_add=True)
