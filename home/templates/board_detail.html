@@ -53,5 +53,21 @@
     {% endfor %}
   </dl>
 
+  <h3>Capital Budget Requests</h3>
+
+  <dl class="row">
+    {% for request in budget_requests_capital %}
+      <dt class="col-sm-3">{{ request.request }}</dt>
+    {% endfor %}
+  </dl>
+
+  <h3>Operational Budget Requests</h3>
+
+  <dl class="row">
+    {% for request in budget_requests_operational %}
+      <dt class="col-sm-3">{{ request.request }}</dt>
+    {% endfor %}
+  </dl>
+
   <a class="btn btn-primary" href="/" role="button">Back</a>
 </div>
