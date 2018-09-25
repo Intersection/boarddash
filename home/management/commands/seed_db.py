@@ -14,8 +14,10 @@ class Command(BaseCommand):
                 'dataset_identifier': 'fhrw-4uyv',
                 'format': 'json',
                 'community_board': '01 MANHATTAN',
+                'limit': 2,
+                'offset': 14500,
             }
-            url = "https://data.cityofnewyork.us/resource/{dataset_identifier}.{format}?community_board={community_board}&$limit=2&$offset=14100&$order=:id&$where=created_date > '2018-01-01T00:00:00.0000'".format(**url_args)
+            url = "https://data.cityofnewyork.us/resource/{dataset_identifier}.{format}?community_board={community_board}&$limit={limit}&$offset={offset}&$order=:id&$where=created_date > '2018-01-01T00:00:00.0000'".format(**url_args)
             response = requests.get(url, timeout=settings.REQUESTS_TIMEOUT_SECONDS)
             print(response.json())
             self.stdout.write(self.style.SUCCESS('Successfully executed statements'))
