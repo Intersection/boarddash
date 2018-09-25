@@ -15,18 +15,20 @@ def create_record(record):
         setattr(model_record, key, value)
     model_record.save()
 
-def process_one_call(limit, offset):
+def make_one_call(limit, offset):
     url_args = {
         'dataset_identifier': 'fhrw-4uyv',
         'format': 'json',
         'community_board': '01 MANHATTAN',
         'limit': limit,
         'offset': offset,
+        'start_date': '2018-09-21T00:00:00.0000',
     }
-    url = "https://data.cityofnewyork.us/resource/{dataset_identifier}.{format}?community_board={community_board}&$limit={limit}&$offset={offset}&$order=:id&$where=created_date > '2018-01-01T00:00:00.0000'".format(**url_args)
-    response = requests.get(url, timeout=settings.REQUESTS_TIMEOUT_SECONDS)
+    url = "https://data.cityofnewyork.us/resource/{dataset_identifier}.{format}?community_board={community_board}&$limit={limit}&$offset={offset}&$order=:id&$where=created_date > '{start_date}'".format(**url_args)
+    return requests.get(url, timeout=settings.REQUESTS_TIMEOUT_SECONDS)
 
-    for record in response.json():
+def process_one_call(response_data):
+    for record in response_data:
         create_record(record)
 
 class Command(BaseCommand):
@@ -35,8 +37,11 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         try:
             offset = 0
-            while offset < 100:
-                process_one_call(PAGE_SIZE, offset)
+            records_in_call = PAGE_SIZE
+            while records_in_call == PAGE_SIZE:
+                response = make_one_call(PAGE_SIZE, offset)
+                records_in_call = len(response.json())
+                process_one_call(response.json())
                 offset += PAGE_SIZE
 
             self.stdout.write(self.style.SUCCESS('Successfully executed statements'))
