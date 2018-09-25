@@ -8,5 +8,5 @@ docker-compose up
 ```
 ## Seed Database
 ```
-docker-compose run web python3 manage.py seed_db
+docker-compose run web python3 manage.py seed_db_nyc_311
 ```
