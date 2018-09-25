@@ -15,6 +15,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         try:
+            CommunityBoard.objects.all().delete()
+
             with open(filename) as f:
                 for row in csv.DictReader(f, skipinitialspace=True):
                     model_record = CommunityBoard()
