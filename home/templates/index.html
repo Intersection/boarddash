@@ -10,28 +10,32 @@
 
   <p>Board Dash allows users to learn about their local community board, view what local leaders are doing, and explore civic data sources around trending issues. Our goal is to present relevant local information that informs future decisions and inspires people to get involved in their community.
 
-  <h2>What is a Community Board?</h2>
-  <p>Community Boards are an official municipal organization whose mission is to advise elected officials and government agencies on matters affecting the social welfare of the district. Boards have 50 volunteer Community members and there are 59 Community Boards across the five Boroughs.</p>
+  <div class="pb-3">
+    <h2>What is a Community Board?</h2>
+    <p>Community Boards are an official municipal organization whose mission is to advise elected officials and government agencies on matters affecting the social welfare of the district. Boards have 50 volunteer Community members and there are 59 Community Boards across the five Boroughs.</p>
+  </div>
 
-  <h2>Find your board</h2>
-  {% for board in boards %}
-    <div class="btn-group dropdown">
-      <a class="btn btn-primary btn-lg dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {{ board.title }}:
-      </a>
-      
-      <div class="dropdown-menu pre-scrollable" aria-labelledby="dropdownMenuLink">
-        {% for i in board.boards %}
-        <a class="dropdown-item" href="/boards/{{board.slug}}_{{i}}">Community Board {{i}}</a>
-        {% endfor %}
+  <div class="pb-3">
+    <h2>Find your board</h2>
+    {% for board in boards %}
+      <div class="btn-group dropdown">
+        <a class="btn btn-primary btn-lg dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{ board.title }}:
+        </a>
+        
+        <div class="dropdown-menu pre-scrollable" aria-labelledby="dropdownMenuLink">
+          {% for i in board.boards %}
+          <a class="dropdown-item" href="/boards/{{board.slug}}_{{i}}">Community Board {{i}}</a>
+          {% endfor %}
+        </div>
       </div>
-    </div>
-   {% endfor %}
+     {% endfor %}
 
-  <p>
-    Unsure of your community board?
-    <a href="https://communityprofiles.planning.nyc.gov">Look it up here</a>
-  </p>
+    <p>
+      Unsure of your community board?
+      <a href="https://communityprofiles.planning.nyc.gov">Look it up here</a>
+    </p>
+  </div>
 
   <h2>Who Made This?</h2>
   <p>

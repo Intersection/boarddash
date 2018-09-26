@@ -9,51 +9,78 @@
   
   <h1>{{community_board.name}}</h1>
 
-  <dl class="row">
-    <dt class="col-sm-2">Chair</dt>
-    <dd class="col-sm-10">{{ community_board.chair }}</dt>
+  <div class="pb-4">
+    <p class="lead">This is all you need to know about your local community board. It will allow you to learn about what’s currently going on and how you can get involved.</p>
+    <p class="lead">The community board is your local representation within the city. We focus on issues that improve the quality of life in the neighborhood. Stay informed and make yourself heard and help making your community a better place to live in.</p>
+    <p class="lead">Areas in which community boards typically get involved in span from economic topics (e.g. zoning), parks, all kinds of social services in the neighborhood (youth and development, homelessness, seniors, etc.), transportation, public safety, and other quality of life initiatives.</p>
+  </div>
 
-    <dt class="col-sm-2">District Manager</dt>
-    <dd class="col-sm-10">{{ community_board.district_manager }}</dt>
+  <dl class="row pb-4">
+    <dt class="col-sm-4">
+      <abbr title="The Chairperson of each Community Board is a member of a board known as the Borough Board.">
+        Chair
+      </abbr>
+    </dt>
+    <dd class="col-sm-8">{{ community_board.chair }}</dt>
 
-    <dt class="col-sm-2">Address</dt>
-    <dd class="col-sm-10">
+    <dt class="col-sm-4">
+      <abbr title="The District Manager establishes an office, hires staff, and implements procedures to improve the delivery of City services to the district. District Managers play many different roles. They are complaint takers, municipal managers, information sources, community organizers, mediators, advocates, and much more.">
+        District Manager
+      </abbr>
+    </dt>
+    <dd class="col-sm-8">{{ community_board.district_manager }}</dt>
+
+    <dt class="col-sm-4">Address</dt>
+    <dd class="col-sm-8">
       {{ community_board.address }}
       <a href="https://www.google.com/maps/search/?api=1&query={{community_board.address}}" rel="noopener noreferrer" target="_blank">
         (map)
       </a>
     </dt>
 
-    <dt class="col-sm-2">Phone</dt>
-    <dd class="col-sm-10">
+    <dt class="col-sm-4">Phone</dt>
+    <dd class="col-sm-8">
       <a href="tel:+{{community_board.phone_number}}">{{ community_board.formatted_phone_number }}</a>
     </dt>
 
-    <dt class="col-sm-2">Email Address</dt>
-    <dd class="col-sm-10">
+    <dt class="col-sm-4">Email Address</dt>
+    <dd class="col-sm-8">
       <a href="mailto:{{ community_board.email_address }}">{{ community_board.email_address }}</a>
     </dt>
 
-    <dt class="col-sm-2">Board Meeting</dt>
-    <dd class="col-sm-10">{{ community_board.board_meeting }}</dt>
+    <dt class="col-sm-4">Board Meeting</dt>
+    <dd class="col-sm-8">{{ community_board.board_meeting }}</dt>
 
-    <dt class="col-sm-2">Cabinet Meeting</dt>
-    <dd class="col-sm-10">{{ community_board.cabinet_meeting }}</dt>
-
+    <dt class="col-sm-4">Cabinet Meeting</dt>
+    <dd class="col-sm-8">{{ community_board.cabinet_meeting }}</dt>
   </dl>
 
-  <h3>Top 311 Report Categories</h3>
+  <div class="pb-4">
+    <h3>Top 311 Report Categories</h3>
 
-  <dl class="row">
-    {% for category in categories %}
-      <dt class="col-sm-3">{{ category.complaint_type }}</dt>
-      <dd class="col-sm-9">{{ category.total }}</dd>
-    {% endfor %}
-  </dl>
+    <div class="lead">
+      <p>Calling 311, going to the <a href="https://www1.nyc.gov/311/" rel="noopener noreferrer" target="_blank">NYC 311 website</a>, or using the 311 app is a great way for getting in touch with the city and tell us about problems.</p>
+      <p>Always call 911 in an emergency.</p>
+      <p>Below are the topics community members reached out to 311 about.</p>
+    </div>
 
+    <dl class="row">
+      {% for category in categories %}
+        <dt class="col-sm-3">{{ category.complaint_type }}</dt>
+        <dd class="col-sm-9">{{ category.total }}</dd>
+      {% endfor %}
+    </dl>
+  </div>
+
+  {% if budet_requests_capital|length > 0 or budget_requests_operational|length > 0 %}
+    <p class="lead">
+      As a community board we can support initiatives in, and by, the neighborhood by sharing budget needs with the Office of Management and Budget in order to request funds.
+    </p>
+  {% endif %}
+    
   {% if budet_requests_capital|length > 0 %}
     <h3>Capital Budget Requests</h3>
-    
+
     <div class="card-columns">
       {% for request in budget_requests_capital %}
         <div class="card">
