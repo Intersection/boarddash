@@ -66,7 +66,7 @@ class BudgetRequest(models.Model):
     community_board_relation = models.ForeignKey(CommunityBoard, null=True, on_delete=models.SET_NULL)
     explanation = models.TextField()
     priority = models.CharField(max_length=255)
-    request = models.CharField(max_length=255)
+    request = models.TextField()
     responded_by = models.CharField(max_length=255)
     response = models.TextField()
     responsible_agency = models.CharField(max_length=255)
