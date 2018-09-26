@@ -6,11 +6,33 @@ from home.models import NYC311Record, CommunityBoard, BudgetRequest
 
 def index(request):
     data = {
-        'brooklyn_boards': range(1, 19),
-        'bronx_boards': range(1, 13),
-        'manhattan_boards': range(1, 13),
-        'queens_boards': range(1, 15),
-        'staten_island_boards': range(1, 4),
+        'boards': [
+            {
+                'title': 'Brooklyn',
+                'slug': 'brooklyn',
+                'boards': range(1, 19),
+            },
+            {
+                'title': 'Bronx',
+                'slug': 'bronx',
+                'boards': range(1, 13),
+            },
+            {
+                'title': 'Manhattan',
+                'slug': 'manhattan',
+                'boards': range(1, 13),
+            },
+            {
+                'title': 'Queens',
+                'slug': 'queens',
+                'boards': range(1, 15),
+            },
+            {
+                'title': 'Staten Island',
+                'slug': 'staten_island',
+                'boards': range(1, 4),
+            },
+        ],
     }
     return render(request, 'index.html', data)
 
