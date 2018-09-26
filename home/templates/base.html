@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}Boarddash{% endblock %}</title>
+    {% load bootstrap4 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% bootstrap_messages %}
+</head>
+
+<body>
+  {% block content %}{% endblock %}
+</body>
+</html>

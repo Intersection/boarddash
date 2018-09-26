@@ -1,9 +1,6 @@
-{% load bootstrap4 %}
+{% extends "base.html" %}
 
-{% bootstrap_css %}
-{% bootstrap_javascript jquery='full' %}
-{% bootstrap_messages %}
-
+{% block content %}
 <div class="container">
   <h1 class="display-1 text-center">Board Dash</h1>
   <p class="lead text-center">Bringing smart city data to the community.</p>
@@ -47,3 +44,4 @@
     Feel free to add to this and make improvements that help the city.
   </p>
 </div>
+{% endblock %}

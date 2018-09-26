@@ -1,9 +1,8 @@
-{% load bootstrap4 %}
+{% extends "base.html" %}
 
-{% bootstrap_css %}
-{% bootstrap_javascript jquery='full' %}
-{% bootstrap_messages %}
+{% block title %}Boarddash | {{community_board.name}}{% endblock %}
 
+{% block content %}
 <div class="container">
   <a class="btn btn-light" href="/" role="button">Back</a>
   
@@ -120,3 +119,4 @@
 
   <a class="btn btn-light" href="/" role="button">Back</a>
 </div>
+{% endblock %}
